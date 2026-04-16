@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/remote/:path*",
+      "destination": "http://pat.hidencloud.com:24572/:path*"
+    }
+  ]
+}
