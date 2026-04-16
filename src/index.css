@@ -1,0 +1,287 @@
+@import "tailwindcss";
+
+@theme {
+  /* Override White to be Navy Blue */
+  --color-white: #ffffff;
+  
+  /* Black/Navy Palette for Backgrounds */
+  --color-black: #000000;
+  --color-navy-800: #101831;
+  --color-navy-900: #0a1128;
+  
+  /* Override Gray palette to be Dark Navy/Black */
+  --color-gray-50: #000000; /* Deep black for body background */
+  --color-gray-100: #101831; /* Slightly lighter navy for inputs/hovers */
+  --color-gray-200: #1e293b; /* Borders */
+  --color-gray-300: #334155; 
+  --color-gray-400: #94a3b8; /* Secondary/muted text */
+  --color-gray-500: #cbd5e1; /* Labels */
+  --color-gray-600: #e2e8f0; /* Body text */
+  --color-gray-700: #f1f5f9; /* Bold text */
+  --color-gray-800: #f8fafc;
+  --color-gray-900: #ffffff; /* Main headings (pure white) */
+
+  /* Set primary palette to a nice vibrant blue */
+  --color-primary-50: rgba(37, 99, 235, 0.1);
+  --color-primary-100: rgba(37, 99, 235, 0.2);
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-900: #1e3a8a;
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #0ea5e9;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-gray-50);
+    color: var(--color-gray-600);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Scrollbars adjusted for dark theme */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-navy-900);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-500);
+  }
+}
+
+/* Card effect mapping */
+.glass {
+  background: var(--color-navy-900);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+.glass-light {
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+}
+
+.glass-premium {
+  background: rgba(16, 24, 49, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border-radius: 20px;
+}
+
+.hover-lift {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.5);
+}
+
+.text-glow-primary {
+  text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+.gradient-mesh {
+  background: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0, transparent 50%),
+              radial-gradient(at 50% 100%, rgba(124, 58, 237, 0.1) 0, transparent 50%);
+}
+
+/* Gradients */
+.gradient-primary {
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, #059669, #10b981);
+}
+
+.gradient-warning {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+}
+
+.gradient-danger {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+.gradient-info {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Input styles */
+.input-field {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 8px;
+  color: var(--color-gray-900);
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.input-field::placeholder {
+  color: var(--color-gray-400);
+}
+
+/* Ensures select element text inside dropdown options is readable */
+select.input-field option {
+  background: var(--color-navy-900);
+  color: var(--color-gray-900);
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background: var(--color-primary-600);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-500);
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.4);
+}
+
+.btn-danger {
+  background: var(--color-danger);
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-gray-400);
+  border: 1px solid var(--color-gray-200);
+}
+
+.btn-ghost:hover {
+  background: var(--color-gray-100);
+  color: var(--color-gray-900);
+}
+
+/* Table */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.data-table thead th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gray-500);
+  background: var(--color-gray-100);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.data-table tbody td {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.data-table tbody tr:hover td {
+  background: var(--color-gray-100);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.badge-warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.badge-danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.badge-info {
+  background: rgba(14, 165, 233, 0.15);
+  color: #0ea5e9;
+}
